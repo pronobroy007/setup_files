@@ -1,5 +1,6 @@
 set path+=**
 
+" For color.
 set t_Co=256
 set term=screen-256color
 
@@ -7,7 +8,6 @@ set term=screen-256color
 let &t_SI = "\<esc>[5 q"
 let &t_SR = "\<esc>[5 q"
 let &t_EI = "\<esc>[2 q"
-
 
 syntax on
 set number
@@ -26,17 +26,33 @@ call vundle#begin()
 	Plugin 'VundleVim/Vundle.vim'
     Plugin 'tpope/vim-fugitive'
     Plugin 'git://git.wincent.com/command-t.git'
-    Plugin 'file:///home/gmarik/path/to/plugin'
     Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
+	"File manager.
+	Plugin 'scrooloose/nerdtree'
+	Plugin 'kien/ctrlp.vim'
 	"For code highlight.
 	Plugin 'octol/vim-cpp-enhanced-highlight'
 	"For Code completion.
 	Plugin 'neoclide/coc.nvim'
+	"For auto pairs like {, [, < etc.
+	Plugin 'neoclide/coc-pairs'	
+	"For Snippets
+	Plugin 'neoclide/coc-snippets'
 	"For base16-vim.
 	Plugin 'chriskempson/base16-vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+"File manager :
+"--------------
+	"For ctrlP
+	let g:ctrlp_working_path_mode = 'c'
+
+" For Key Map :
+"---------------
+	"Spell checker.
+	map<F6> :set spell!<cr>
 
 "For base16-vim :
 "-----------------
@@ -175,6 +191,7 @@ filetype plugin indent on    " required
 	nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 	" Resume latest coc list
 	nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
 "********************************************************************
 "********************************************************************
 
