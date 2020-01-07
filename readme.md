@@ -9,7 +9,7 @@
 	* Then open config file with command :CocConfig
 	* and peast flowing text for languageserver to work.
 		
-	```
+
 	{
 		"languageserver": 
 		{
@@ -23,13 +23,13 @@
 				   "cache": 
 					{
 					 "directory": ".ccls-cache"
-				   	}
+					}
 				 }
 			  }
-			}
-	  }	
+		}
+	}	
 
-	```
+
 
 
 # For code highliting and theam(bash16_shell)
