@@ -112,6 +112,7 @@ fi
 # Make ALIAS for quick access any folder.
 #sourch ~/.bashrc
 alias kali="cd /home/linux/Documents/kali"
+alias app="cd /home/linux/Documents/program/app/"
 alias py="cd /home/linux/Documents/program/python/"
 alias cplasplas="cd /home/linux/Documents/program/cppProject/"
 
@@ -122,8 +123,9 @@ alias synfigStudio="/home/linux/ProgramFile/synfigStudio.appimage"
 
 #This is same as environment variable in windows.
 export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
-export PATH=$PATH:/home/linux/Documents/program/python/scraping/steam/dist
-export PATH=$PATH:/home/linux/Documents/program/python/scraping/imdb/dist/
+export PATH=$PATH:/home/linux/Documents/program/app/steam/dist
+export PATH=$PATH:/home/linux/Documents/program/app/imdb/dist/
+export PATH=$PATH:/home/linux/Documents/program/app/bin
 
 #This is python library.
 export PYTHONPATH=$PYTHONPATH:/home/linux/Documents/program/python/scraping/lib

@@ -9,11 +9,19 @@ let &t_SI = "\<esc>[5 q"
 let &t_SR = "\<esc>[5 q"
 let &t_EI = "\<esc>[2 q"
 
+"For Python
+"filetype indent on
+"autocmd Filetype python setlocal noexpandtab tabstop=4 sw=4 sts=4
+
+
 syntax on
 set number
-set nocompatible    "be iMproved, required
+
+"set nocompatible    "be iMproved, required
 set tabstop=4       "tab space = 4 space.
 set shiftwidth=4    "use >> = 4 space.
+set softtabstop=4
+set expandtab
 
 filetype off                  " required
 
@@ -29,30 +37,116 @@ call vundle#begin()
     Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 	"File manager.
-	Plugin 'scrooloose/nerdtree'
-	Plugin 'kien/ctrlp.vim'
-	"For code highlight.
-	Plugin 'octol/vim-cpp-enhanced-highlight'
+        Plugin 'scrooloose/nerdtree'
+        Plugin 'kien/ctrlp.vim'
+
 	"For Code completion.
-	Plugin 'neoclide/coc.nvim'
+        Plugin 'neoclide/coc.nvim'
+        "For python languageserver.
+        "pip3 install python-language-server 
+        Plugin 'neoclide/coc-pyls'
+        "For C# languageserver.
+        Plugin 'omnisharp/omnisharp-vim'
+        "For PHP languageserver.
+        Plugin 'shawncplus/phpcomplete.vim'
+
+	"For code highlight for c++/python.
+        Plugin 'octol/vim-cpp-enhanced-highlight'
+    "For syntex checker.
+        Plugin 'scrooloose/syntastic'
 	"For auto pairs like {, [, < etc.
-	Plugin 'neoclide/coc-pairs'	
+        Plugin 'neoclide/coc-pairs'	
 	"For Snippets
-	Plugin 'neoclide/coc-snippets'
-	"For base16-vim.
-	Plugin 'chriskempson/base16-vim'
+        Plugin 'neoclide/coc-snippets'
+	"For base16-vim theam.
+        Plugin 'chriskempson/base16-vim'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+"For PHP :
+"---------
+
+"For C# omnisharp :
+"------------------
+    " Use the stdio OmniSharp-roslyn server
+    "let g:OmniSharp_server_stdio = 1
+    let g:OmniSharp_server_use_mono = 1
+
+    " Set the type lookup function to use the preview window instead of echoing it
+    "let g:OmniSharp_typeLookupInPreview = 1
+
+    " Timeout in seconds to wait for a response from the server
+    let g:OmniSharp_timeout = 5
+
+    " Don't autoselect first omnicomplete option, show options even if there is only
+    " one (so the preview documentation is accessible). Remove 'preview' if you
+    " don't want to see any documentation whatsoever.
+    "set completeopt=longest,menuone,preview
+
+    " Fetch full documentation during omnicomplete requests.
+    " By default, only Type/Method signatures are fetched. Full documentation can
+    " still be fetched when you need it with the :OmniSharpDocumentation command.
+    let g:omnicomplete_fetch_full_documentation = 1
+
+    " Set desired preview window height for viewing documentation.
+    " You might also want to look at the echodoc plugin.
+    set previewheight=5
+
+    " Tell ALE to use OmniSharp for linting C# files, and no other linters.
+    let g:ale_linters = { 'cs': ['OmniSharp'] }
+
+    " Update semantic highlighting after all text changes
+    "let g:OmniSharp_highlight_types = 3
+    " Update semantic highlighting on BufEnter and InsertLeave
+    " let g:OmniSharp_highlight_types = 2
+
+
+"For Syntastic :
+"---------------
+    "It will only work if Syntastic and OmniSharp installed.
+    let g:syntastic_cs_checkers = ['code_checker']
+    "Ignore some of the messages in syntastic.
+    let g:syntastic_quiet_messages = { 'regex': 'Unnecessary using directive.' }
+
+	set statusline+=%#warningmsg#
+	set statusline+=%{SyntasticStatuslineFlag()}
+	set statusline+=%*
+	let g:syntastic_always_populate_loc_list = 1
+	let g:syntastic_auto_loc_list = 1
+	let g:syntastic_check_on_open = 1
+	let g:syntastic_check_on_wq = 0
+	let g:syntastic_python_checkers=['flake8']
 
 "File manager :
 "--------------
 	"For ctrlP
 	let g:ctrlp_working_path_mode = 'c'
 
-" For Key Map :
+" For key map :
 "---------------
 	"Spell checker.
 	map<F6> :set spell!<cr>
+
+	"For vim tab.
+	nnoremap tn :tabnew<space>
+	nnoremap tl :tabnext<cr>
+	nnoremap th :tabprev<cr>
+	nnoremap tj :tabfirst<cr>
+	nnoremap tk :tablast<cr>
+	"Ex : tm 0 	-->  this will move current tab in first position.
+	nnoremap tm :tabm<space>
+
+    "For nerdtree
+	nnoremap nt :NERDTree<cr>
+
+"For nerdtree
+"------------
+    "put this in your .vimrc
+    set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*,*.meta
+    "Nerdtree config for wildignore
+    let NERDTreeRespectWildIgnore=1
+	
 
 "For base16-vim :
 "-----------------
@@ -60,6 +154,18 @@ filetype plugin indent on    " required
 	  let base16colorspace=256
 	  source ~/.vimrc_background
 	endif
+
+
+
+
+
+
+
+
+
+
+
+
 
 "For COC.NVIM
 "------------
