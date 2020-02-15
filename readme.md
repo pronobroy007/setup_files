@@ -6,6 +6,10 @@
 	* Then open config file with command :CocConfig
 	* and peast flowing text for languageserver to work.
 		
+<<<<<<< HEAD
+=======
+
+>>>>>>> 61966a4cf969c481f126c96790b4fc968d5cb931
 	{
 		"languageserver": 
 		{
@@ -19,11 +23,12 @@
 				   "cache": 
 					{
 					 "directory": ".ccls-cache"
-				   	}
+					}
 				 }
 			  }
-			}
-	  }	
+		}
+	}	
+
 
 
 
