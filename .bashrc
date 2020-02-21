@@ -111,7 +111,7 @@ fi
 
 # Make ALIAS for quick access any folder.
 #sourch ~/.bashrc
-alias kali="cd /home/linux/Documents/kali"
+alias kali="cd /home/linux/Documents/tutorial"
 alias app="cd /home/linux/Documents/program/app/"
 alias py="cd /home/linux/Documents/program/python/"
 alias cplasplas="cd /home/linux/Documents/program/cppProject/"
@@ -119,7 +119,10 @@ alias cplasplas="cd /home/linux/Documents/program/cppProject/"
 alias demoprog="cd /home/linux/Documents/program/demo"
 alias unityHub="/home/linux/ProgramFile/UnityHub.AppImage"
 alias synfigStudio="/home/linux/ProgramFile/synfigStudio.appimage"
-
+alias project="tmux new -s project -d ; 
+                tmux split-window -h -t project ; 
+                tmux split-window -v -t project ; 
+                tmux attach -t project"
 
 #This is same as environment variable in windows.
 export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
@@ -129,10 +132,6 @@ export PATH=$PATH:/home/linux/Documents/program/app/bin
 
 #This is python library.
 export PYTHONPATH=$PYTHONPATH:/home/linux/Documents/program/python/scraping/lib
-
-#For autocompletion of base16 shell.
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 #For Change color for 777 directory(33 orange).
 LS_COLORS="$LS_COLORS:ow=33"

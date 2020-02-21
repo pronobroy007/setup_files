@@ -1,21 +1,14 @@
 set path+=**
 
-" For color.
 set t_Co=256
-set term=screen-256color
+
+syntax on
+set number
 
 "For insert mode.
 let &t_SI = "\<esc>[5 q"
 let &t_SR = "\<esc>[5 q"
 let &t_EI = "\<esc>[2 q"
-
-"For Python
-"filetype indent on
-"autocmd Filetype python setlocal noexpandtab tabstop=4 sw=4 sts=4
-
-
-syntax on
-set number
 
 "set nocompatible    "be iMproved, required
 set tabstop=4       "tab space = 4 space.
@@ -25,14 +18,12 @@ set expandtab
 
 filetype off                  " required
 
-"For clang_complete Plugin.
-"let g:clang_library_path='/usr/lib/llvm-8/lib'
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-	Plugin 'VundleVim/Vundle.vim'
-    Plugin 'tpope/vim-fugitive'
+    Plugin 'VundleVim/Vundle.vim'
+	Plugin 'tpope/vim-fugitive'
     Plugin 'git://git.wincent.com/command-t.git'
     Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
@@ -44,7 +35,7 @@ call vundle#begin()
         Plugin 'neoclide/coc.nvim'
         "For python languageserver.
         "pip3 install python-language-server 
-        Plugin 'neoclide/coc-pyls'
+        Plugin 'neoclide/coc-python'
         "For C# languageserver.
         Plugin 'omnisharp/omnisharp-vim'
         "For PHP languageserver.
@@ -56,51 +47,18 @@ call vundle#begin()
         Plugin 'scrooloose/syntastic'
 	"For auto pairs like {, [, < etc.
         Plugin 'neoclide/coc-pairs'	
-	"For Snippets
+	"For Snippets.
         Plugin 'neoclide/coc-snippets'
-	"For base16-vim theam.
-        Plugin 'chriskempson/base16-vim'
-
+    "For sttatus bar.
+        Plugin 'vim-airline/vim-airline'
+        Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-"For PHP :
-"---------
-
-"For C# omnisharp :
-"------------------
-    " Use the stdio OmniSharp-roslyn server
-    "let g:OmniSharp_server_stdio = 1
-    let g:OmniSharp_server_use_mono = 1
-
-    " Set the type lookup function to use the preview window instead of echoing it
-    "let g:OmniSharp_typeLookupInPreview = 1
-
-    " Timeout in seconds to wait for a response from the server
-    let g:OmniSharp_timeout = 5
-
-    " Don't autoselect first omnicomplete option, show options even if there is only
-    " one (so the preview documentation is accessible). Remove 'preview' if you
-    " don't want to see any documentation whatsoever.
-    "set completeopt=longest,menuone,preview
-
-    " Fetch full documentation during omnicomplete requests.
-    " By default, only Type/Method signatures are fetched. Full documentation can
-    " still be fetched when you need it with the :OmniSharpDocumentation command.
-    let g:omnicomplete_fetch_full_documentation = 1
-
-    " Set desired preview window height for viewing documentation.
-    " You might also want to look at the echodoc plugin.
-    set previewheight=5
-
-    " Tell ALE to use OmniSharp for linting C# files, and no other linters.
-    let g:ale_linters = { 'cs': ['OmniSharp'] }
-
-    " Update semantic highlighting after all text changes
-    "let g:OmniSharp_highlight_types = 3
-    " Update semantic highlighting on BufEnter and InsertLeave
-    " let g:OmniSharp_highlight_types = 2
-
+"For nvim status line :
+"---------------------
+    let g:airline_powerline_fonts=1
+    let g:airline#extensions#tabline#enabled = 1
 
 "For Syntastic :
 "---------------
@@ -146,23 +104,40 @@ filetype plugin indent on    " required
     set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*,*.meta
     "Nerdtree config for wildignore
     let NERDTreeRespectWildIgnore=1
-	
 
-"For base16-vim :
-"-----------------
-	if filereadable(expand("~/.vimrc_background"))
-	  let base16colorspace=256
-	  source ~/.vimrc_background
-	endif
+"For C# omnisharp :
+"------------------
+    " Use the stdio OmniSharp-roslyn server
+    "let g:OmniSharp_server_stdio = 1
+    let g:OmniSharp_server_use_mono = 1
 
+    " Set the type lookup function to use the preview window instead of echoing it
+    "let g:OmniSharp_typeLookupInPreview = 1
 
+    " Timeout in seconds to wait for a response from the server
+    let g:OmniSharp_timeout = 5
 
+    " Don't autoselect first omnicomplete option, show options even if there is only
+    " one (so the preview documentation is accessible). Remove 'preview' if you
+    " don't want to see any documentation whatsoever.
+    "set completeopt=longest,menuone,preview
 
+    " Fetch full documentation during omnicomplete requests.
+    " By default, only Type/Method signatures are fetched. Full documentation can
+    " still be fetched when you need it with the :OmniSharpDocumentation command.
+    let g:omnicomplete_fetch_full_documentation = 1
 
+    " Set desired preview window height for viewing documentation.
+    " You might also want to look at the echodoc plugin.
+    set previewheight=5
 
+    " Tell ALE to use OmniSharp for linting C# files, and no other linters.
+    let g:ale_linters = { 'cs': ['OmniSharp'] }
 
-
-
+    " Update semantic highlighting after all text changes
+    "let g:OmniSharp_highlight_types = 3
+    " Update semantic highlighting on BufEnter and InsertLeave
+    " let g:OmniSharp_highlight_types = 2
 
 
 
@@ -300,8 +275,3 @@ filetype plugin indent on    " required
 
 "********************************************************************
 "********************************************************************
-
-
-
-
-
