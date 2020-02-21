@@ -7,7 +7,13 @@
 # Instll Lnaguage server :
 	* apt install ccls
 	* Then open config file with command :CocConfig
+<<<<<<< HEAD
 	* and peast flowing text for languageserver to work.  {
+=======
+	* and peast flowing text for languageserver to work.
+		
+	{
+>>>>>>> c59987315310d257efb67e73bd92b8e90c621b42
 		"languageserver": 
 		{
 		  "ccls": 
