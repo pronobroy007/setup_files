@@ -30,6 +30,15 @@ call vundle#begin()
 	"File manager.
         Plugin 'scrooloose/nerdtree'
         Plugin 'kien/ctrlp.vim'
+	"For code highlight for c++/python.
+        Plugin 'octol/vim-cpp-enhanced-highlight'
+    "For syntex checker.
+        Plugin 'scrooloose/syntastic'
+    "For sttatus bar.
+        Plugin 'vim-airline/vim-airline'
+    "For base16 theam.
+        Plugin 'chriskempson/base16-vim'
+
 
 	"For Code completion.
         Plugin 'neoclide/coc.nvim'
@@ -40,20 +49,18 @@ call vundle#begin()
         Plugin 'omnisharp/omnisharp-vim'
         "For PHP languageserver.
         Plugin 'shawncplus/phpcomplete.vim'
-
-	"For code highlight for c++/python.
-        Plugin 'octol/vim-cpp-enhanced-highlight'
-    "For syntex checker.
-        Plugin 'scrooloose/syntastic'
-	"For auto pairs like {, [, < etc.
+        "For auto pairs like {, [, < etc.
         Plugin 'neoclide/coc-pairs'	
-	"For Snippets.
+        "For Snippets.
         Plugin 'neoclide/coc-snippets'
-    "For sttatus bar.
-        Plugin 'vim-airline/vim-airline'
-        Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+"For cpp code highlighting :
+"---------------------------
+    let g:cpp_class_scope_highlight = 1
+    let g:cpp_member_variable_highlight = 1
+    let g:cpp_class_decl_highlight = 1
 
 "For nvim status line :
 "---------------------
@@ -105,6 +112,14 @@ filetype plugin indent on    " required
     "Nerdtree config for wildignore
     let NERDTreeRespectWildIgnore=1
 
+
+" For base16 background theam
+" ----------------------------
+    if filereadable(expand("~/.vimrc_background")) 
+      let base16colorspace=256
+      source ~/.vimrc_background
+    endif
+    
 "For C# omnisharp :
 "------------------
     " Use the stdio OmniSharp-roslyn server
