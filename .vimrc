@@ -36,9 +36,6 @@ call vundle#begin()
         Plugin 'scrooloose/syntastic'
     "For sttatus bar.
         Plugin 'vim-airline/vim-airline'
-    "For base16 theam.
-        Plugin 'chriskempson/base16-vim'
-
 
 	"For Code completion.
         Plugin 'neoclide/coc.nvim'
@@ -113,13 +110,6 @@ filetype plugin indent on    " required
     let NERDTreeRespectWildIgnore=1
 
 
-" For base16 background theam
-" ----------------------------
-    if filereadable(expand("~/.vimrc_background")) 
-      let base16colorspace=256
-      source ~/.vimrc_background
-    endif
-    
 "For C# omnisharp :
 "------------------
     " Use the stdio OmniSharp-roslyn server

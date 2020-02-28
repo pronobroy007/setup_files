@@ -119,6 +119,8 @@ alias cplasplas="cd /home/linux/Documents/program/cppProject/"
 alias demoprog="cd /home/linux/Documents/program/demo"
 alias unityHub="/home/linux/ProgramFile/UnityHub.AppImage"
 alias synfigStudio="/home/linux/ProgramFile/synfigStudio.appimage"
+
+alias screenoff="xset dpms force off"
 alias project="tmux new -s project -d ; 
                 tmux split-window -h -t project ; 
                 tmux split-window -v -t project ; 
