@@ -120,7 +120,7 @@ filetype plugin indent on    " required
     "let g:OmniSharp_typeLookupInPreview = 1
 
     " Timeout in seconds to wait for a response from the server
-    let g:OmniSharp_timeout = 5
+    "let g:OmniSharp_timeout = 5
 
     " Don't autoselect first omnicomplete option, show options even if there is only
     " one (so the preview documentation is accessible). Remove 'preview' if you
@@ -130,11 +130,11 @@ filetype plugin indent on    " required
     " Fetch full documentation during omnicomplete requests.
     " By default, only Type/Method signatures are fetched. Full documentation can
     " still be fetched when you need it with the :OmniSharpDocumentation command.
-    let g:omnicomplete_fetch_full_documentation = 1
+    "let g:omnicomplete_fetch_full_documentation = 1
 
     " Set desired preview window height for viewing documentation.
     " You might also want to look at the echodoc plugin.
-    set previewheight=5
+    "set previewheight=5
 
     " Tell ALE to use OmniSharp for linting C# files, and no other linters.
     let g:ale_linters = { 'cs': ['OmniSharp'] }

@@ -10,7 +10,7 @@
 	* apt install ccls
 	* Then open config file with command :CocConfig
 	* and peast flowing text for languageserver to work.
-		
+
 	{
 		"languageserver": 
 		{

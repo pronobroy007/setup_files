@@ -1,10 +1,11 @@
-# Install developer tools.
-    sudo apt install git build-essential g++ ruby ruby-dev nodejs npm -y
-
 # Install bandle.
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # Install Base16 theam.
     git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell	
+
+
+# Install developer tools.
+    sudo apt install git build-essential g++ ruby ruby-dev npm -y
 
 # For make color and folder icon in terminal
 # https://www.addictivetips.com/ubuntu-linux-tips/make-linux-terminal-user-friendly-colorls/
@@ -22,9 +23,9 @@
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
     echo "deb https://download.mono-project.com/repo/debian stable-buster main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
     sudo apt update
-    udo apt install mono-devel
+    sudo apt install mono-devel
 
-
+    # Install vscode and also install unity too extension on it.
 
 
 distro=`cat /etc/os-release | grep '^NAME' | cut -d"\"" -f 2`
@@ -37,6 +38,7 @@ case "$distro" in
         ;;
 
     "Kali GNU/Linux") 
+        # For c++ .
         apt install ccls neovim -y
         ;;
 
@@ -51,16 +53,11 @@ esac
 
 
 # Install zsh, oh-my-zsh, powerlevel10k
-    sudo apt install fonts-powerline -y
     sudo apt install zsh -y
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
     # p10k configure        To configure p10k
     # Set ZSH_THEME="powerlevel10k/powerlevel10k" in ~/.zshrc.
-
-#Make Defauld shell to zsh.
-    chsh -s $(which zsh)
-
 
 
 

@@ -109,22 +109,26 @@ source $ZSH/oh-my-zsh.sh
 
 # Make ALIAS for quick access any folder.
 #sourch ~/.bashrc
+
+alias steam="DRI_PRIME=1 steam"
+alias unityHub="DRI_PRIME=1 /home/linux/ProgramFile/UnityHub.AppImage"
+alias synfigStudio="/home/linux/ProgramFile/synfigStudio.appimage"
+
 alias kali="cd /home/linux/Documents/tutorial"
 alias app="cd /home/linux/Documents/program/app/"
 alias py="cd /home/linux/Documents/program/python/"
 alias cplasplas="cd /home/linux/Documents/program/cppProject/"
-
 alias demoprog="cd /home/linux/Documents/program/demo"
-alias unityHub="/home/linux/ProgramFile/UnityHub.AppImage"
-alias synfigStudio="/home/linux/ProgramFile/synfigStudio.appimage"
+
 
 alias screenoff="xset dpms force off"
 alias project="tmux new -s project -d ; 
                 tmux split-window -h -t project ; 
                 tmux split-window -v -t project ; 
+                tmux resize-pane -t 0 -x 130;
                 tmux attach -t project"
 
-alias ls="colorls --group-directories-first"
+alias ls="colorls --group-directories-first --sort=extension"
 
 #This is same as environment variable in windows.
 export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
