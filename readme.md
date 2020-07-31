@@ -40,27 +40,15 @@
 # Install Python autocomplition
     * :CocInstall coc-python
 
-# Install .Net Core and mono-devel for C# 
-    * wget -q https://packages.microsoft.com/config/ubuntu/19.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-    * sudo dpkg -i packages-microsoft-prod.deb
-    * sudo apt-get update
-    * sudo apt-get install apt-transport-https
-    * apt update
-    * sudo apt-get install dotnet-sdk-3.1
-
-    * sudo apt install apt-transport-https dirmngr gnupg ca-certificates
-    * sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-    * echo "deb https://download.mono-project.com/repo/debian stable-buster main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
-    * sudo apt update
-    * udo apt install mono-devel
-
-
-
 # For nvim
     * ln -s ~/.vimrc ~/.config/nvim/init.vim
         >> As neovim is mostly compatible with standard vim, 
         >> you can symlink nvim/init.vim to your old .vimrc to 
         >> keep old configuration options: 
+
+    [NOTE: If after this linke nvim not work then ls -l ~/.config/nvim/init.vim
+        and if if .vimrc link say's that like is Dead then goto .config/nvim/ and 
+        do this :  ln -s ~/.vimrc init.vim]
 
 
 
@@ -68,11 +56,14 @@
         " Neovim specific commands
     else
         " Standard vim specific commands
+
     endif
         >> if you want some lines to specific to each version, 
         >> you can use an if block in your .vimrc file:
 
-
+# For Tmux 
+    # Add this into .zshrc file.
+    sources /usr/share/powerline/bindings/tmux/powerline.conf
 
 
 

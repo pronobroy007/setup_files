@@ -139,3 +139,5 @@ export PYTHONPATH=$PYTHONPATH:/home/linux/Documents/program/python/scraping/lib
 LS_COLORS="$LS_COLORS:ow=33"
 
 alias rm="rm -i"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

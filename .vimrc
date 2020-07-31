@@ -1,5 +1,4 @@
 set path+=**
-
 set t_Co=256
 
 syntax on
@@ -10,6 +9,7 @@ let &t_SI = "\<esc>[5 q"
 let &t_SR = "\<esc>[5 q"
 let &t_EI = "\<esc>[2 q"
 
+
 "set nocompatible    "be iMproved, required
 set tabstop=4       "tab space = 4 space.
 set shiftwidth=4    "use >> = 4 space.
@@ -18,6 +18,106 @@ set expandtab
 
 filetype off                  " required
 
+"Status bar : 
+"------------
+    set laststatus=2            " set the bottom status baret statusline +=%mod
+
+    function! InsertStatuslineColor(mode)
+        hi startEndColor ctermfg=white ctermbg=40    
+        hi 1stSepColor ctermfg=40 ctermbg=166 
+    endfunction
+
+    function! LeaveColor()
+        hi startEndColor ctermfg=white ctermbg=21    "Blue
+        hi 1stSepColor ctermfg=21 ctermbg=166 
+    endfunction
+
+    function! ModifiedColor()
+        if &mod == 1
+            hi statusline guibg=DarkGrey ctermfg=1 guifg=White ctermbg=15
+            hi 3rdSepColor ctermfg=239 ctermbg=1
+            hi 4thSepColor ctermfg=166 ctermbg=1
+
+            hi EndColor ctermfg=white ctermbg=1
+            hi 5thSepColor ctermfg=1 ctermbg=166
+        else
+            hi statusline guibg=DarkGrey ctermfg=0 guifg=White ctermbg=15
+            hi 3rdSepColor ctermfg=239 ctermbg=0
+            hi 4thSepColor ctermfg=166 ctermbg=0
+
+            hi EndColor ctermfg=white ctermbg=21    
+            hi 5thSepColor ctermfg=21 ctermbg=166
+        endif
+    endfunction
+
+    au InsertLeave,InsertEnter,BufWritePost   * call ModifiedColor()
+    au InsertEnter * call InsertStatuslineColor(v:insertmode)
+    au InsertLeave * call LeaveColor()
+
+    hi statusline guibg=DarkGrey ctermfg=0 guifg=White ctermbg=15
+    hi startEndColor ctermfg=white ctermbg=21    "Blue
+    hi 1stSepColor ctermfg=21 ctermbg=166 
+        hi 2ndColor ctermfg=black ctermbg=166       "Orenge
+        hi 2ndSepColor ctermfg=166 ctermbg=239
+
+        hi 3rdColor ctermfg=white ctermbg=239       "Black
+        hi 3rdSepColor ctermfg=239 ctermbg=0
+
+        hi 4thColor ctermfg=black ctermbg=190       "Yellow
+        hi 4thSepColor ctermfg=166 ctermbg=0
+    hi EndColor ctermfg=white ctermbg=21    "Blue
+    hi 5thSepColor ctermfg=21 ctermbg=166
+
+    set statusline=
+    set statusline +=%#startEndColor#    " Use MyCustomColor for content after this
+    set statusline +=\ \ %{toupper(g:currentmode[mode()])}  " The current mode
+    set statusline +=\ %#1stSepColor#                   " A space
+
+    set statusline +=%#2ndColor#     " Use MyCustomColor for content after this
+    set statusline +=\ %n             "buffer number
+    set statusline +=\ %#2ndSepColor#                   " A space
+
+    set statusline +=%#3rdColor#     " Use MyCustomColor for content after this
+    set statusline +=\                   " A space
+    set statusline +=%.40F                " Full file path, at most 40 characters
+    set statusline +=\ %#3rdSepColor#                   " A space
+    set statusline +=%*                  " Restore default highlight
+
+    set statusline +=%=                  " Split the left and right sides
+    set statusline +=\ %#4thSepColor#                   " A space
+    set statusline +=%#2ndColor#       " Use MyCustomColor for content after this
+    set statusline +=\                   " A space
+    set statusline +=%l/%L                 " Line number / total line
+    set statusline +=\                   " A space
+    set statusline +=%3c\ %04B                " Column number / character under cursor
+    set statusline +=\                   " A space
+    set statusline +=\ %#5thSepColor#                   " A space
+    set statusline +=%#EndColor#    " Use MyCustomColor for content after this
+    set statusline +=%r%w\ 
+    set statusline +=\ %m\        "Readonly? Modified?.
+   
+    " Status Line Custom
+    let g:currentmode={
+        \ 'n'  : 'Normal',
+        \ 'no' : 'Normal·Operator Pending',
+        \ 'v'  : 'Visual',
+        \ 'V'  : 'V·Line',
+        \ '^V' : 'V·Block',
+        \ 's'  : 'Select',
+        \ 'S'  : 'S·Line',
+        \ '^S' : 'S·Block',
+        \ 'i'  : 'Insert',
+        \ 'R'  : 'Replace',
+        \ 'Rv' : 'V·Replace',
+        \ 'c'  : 'Command',
+        \ 'cv' : 'Vim Ex',
+        \ 'ce' : 'Ex',
+        \ 'r'  : 'Prompt',
+        \ 'rm' : 'More',
+        \ 'r?' : 'Confirm',
+        \ '!'  : 'Shell',
+        \ 't'  : 'Terminal'
+        \}
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -26,16 +126,15 @@ call vundle#begin()
 	Plugin 'tpope/vim-fugitive'
     Plugin 'git://git.wincent.com/command-t.git'
     Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
+   
 	"File manager.
         Plugin 'scrooloose/nerdtree'
-        Plugin 'kien/ctrlp.vim'
+        Plugin 'junegunn/fzf'
+        Plugin 'junegunn/fzf.vim'
 	"For code highlight for c++/python.
         Plugin 'octol/vim-cpp-enhanced-highlight'
     "For syntex checker.
         Plugin 'scrooloose/syntastic'
-    "For sttatus bar.
-        Plugin 'vim-airline/vim-airline'
 
 	"For Code completion.
         Plugin 'neoclide/coc.nvim'
@@ -52,6 +151,7 @@ call vundle#begin()
         Plugin 'neoclide/coc-snippets'
 call vundle#end()            " required
 filetype plugin indent on    " required
+
 
 "For cpp code highlighting :
 "---------------------------
@@ -72,35 +172,41 @@ filetype plugin indent on    " required
     let g:syntastic_quiet_messages = { 'regex': 'Unnecessary using directive.' }
 
 	set statusline+=%#warningmsg#
-	set statusline+=%{SyntasticStatuslineFlag()}
+	"set statusline+=%{SyntasticStatuslineFlag()}
 	set statusline+=%*
+    let g:syntastic_quiet_messages={'level':'warnings'}
 	let g:syntastic_always_populate_loc_list = 1
 	let g:syntastic_auto_loc_list = 1
-	let g:syntastic_check_on_open = 1
 	let g:syntastic_check_on_wq = 0
+	let g:syntastic_check_on_open = 0
 	let g:syntastic_python_checkers=['flake8']
-
-"File manager :
-"--------------
-	"For ctrlP
-	let g:ctrlp_working_path_mode = 'c'
 
 " For key map :
 "---------------
 	"Spell checker.
 	map<F6> :set spell!<cr>
 
-	"For vim tab.
-	nnoremap tn :tabnew<space>
-	nnoremap tl :tabnext<cr>
-	nnoremap th :tabprev<cr>
-	nnoremap tj :tabfirst<cr>
-	nnoremap tk :tablast<cr>
-	"Ex : tm 0 	-->  this will move current tab in first position.
-	nnoremap tm :tabm<space>
+    "For Normal Mode :
+    "-----------------
+        "For vim tab.
+        nnoremap tn :tabnew<space>
+        nnoremap tl :tabnext<cr>
+        nnoremap th :tabprev<cr>
+        nnoremap tj :tabfirst<cr>
+        nnoremap tk :tablast<cr>
+        "Ex : tm 0 	-->  this will move current tab in first position.
+        nnoremap tm :tabm<space>
+        "For nerdtree
+        nnoremap nt :NERDTree<cr>
+        "For FZF
+        nmap <silent> <C-p> :Files<cr> 
+        nmap <silent> <C-b> :Buffers<cr> 
+        "For select all
+        nmap<C-a> ggVG
 
-    "For nerdtree
-	nnoremap nt :NERDTree<cr>
+    "For Visual Mode :
+    "-----------------
+        vmap<C-c> "+y
 
 "For nerdtree
 "------------
@@ -108,6 +214,14 @@ filetype plugin indent on    " required
     set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*,*.meta
     "Nerdtree config for wildignore
     let NERDTreeRespectWildIgnore=1
+
+
+"For base16 :
+"------------
+"    if filereadable(expand("~/.vimrc_background"))
+"      let base16colorspace=256
+"        source ~/.vimrc_background
+"    endif
 
 
 "For C# omnisharp :
@@ -120,21 +234,21 @@ filetype plugin indent on    " required
     "let g:OmniSharp_typeLookupInPreview = 1
 
     " Timeout in seconds to wait for a response from the server
-    "let g:OmniSharp_timeout = 5
+    let g:OmniSharp_timeout = 5
 
     " Don't autoselect first omnicomplete option, show options even if there is only
     " one (so the preview documentation is accessible). Remove 'preview' if you
     " don't want to see any documentation whatsoever.
-    "set completeopt=longest,menuone,preview
+    set completeopt=longest,menuone,preview
 
     " Fetch full documentation during omnicomplete requests.
     " By default, only Type/Method signatures are fetched. Full documentation can
     " still be fetched when you need it with the :OmniSharpDocumentation command.
-    "let g:omnicomplete_fetch_full_documentation = 1
+    let g:omnicomplete_fetch_full_documentation = 1 
 
     " Set desired preview window height for viewing documentation.
     " You might also want to look at the echodoc plugin.
-    "set previewheight=5
+    set previewheight=5
 
     " Tell ALE to use OmniSharp for linting C# files, and no other linters.
     let g:ale_linters = { 'cs': ['OmniSharp'] }
@@ -142,7 +256,8 @@ filetype plugin indent on    " required
     " Update semantic highlighting after all text changes
     "let g:OmniSharp_highlight_types = 3
     " Update semantic highlighting on BufEnter and InsertLeave
-    " let g:OmniSharp_highlight_types = 2
+    "let g:OmniSharp_highlight_types = 2
+
 
 
 

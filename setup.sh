@@ -1,11 +1,15 @@
+# Install Nerd font............ 
 # Install bandle.
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 # Install Base16 theam.
     git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell	
 
-
 # Install developer tools.
     sudo apt install git build-essential g++ ruby ruby-dev npm -y
+
+# Install powerline.
+    sudo apt install powerline
 
 # For make color and folder icon in terminal
 # https://www.addictivetips.com/ubuntu-linux-tips/make-linux-terminal-user-friendly-colorls/
@@ -24,8 +28,7 @@
     echo "deb https://download.mono-project.com/repo/debian stable-buster main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
     sudo apt update
     sudo apt install mono-devel
-
-    # Install vscode and also install unity too extension on it.
+    # Install vscode and also install unity tool extension on it.
 
 
 distro=`cat /etc/os-release | grep '^NAME' | cut -d"\"" -f 2`
@@ -50,18 +53,17 @@ esac
     mkdir ~/.config/nvim
     ln -s ~/.vimrc ~/.config/nvim/init.vim
 
-
-
 # Install zsh, oh-my-zsh, powerlevel10k
     sudo apt install zsh -y
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     # p10k configure        To configure p10k
     # Set ZSH_THEME="powerlevel10k/powerlevel10k" in ~/.zshrc.
 
-
-
-# Install Nerd font............ 
+# Install FZF for Fuzzy finder for terminal.
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
 
 
 

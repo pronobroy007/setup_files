@@ -110,21 +110,24 @@ source $ZSH/oh-my-zsh.sh
 # Make ALIAS for quick access any folder.
 #sourch ~/.bashrc
 
-alias steam="DRI_PRIME=1 steam"
-alias unityHub="DRI_PRIME=1 /home/linux/ProgramFile/UnityHub.AppImage"
-alias synfigStudio="/home/linux/ProgramFile/synfigStudio.appimage"
+alias kdenlive="DRI_PRIME=1 kdenlive &"
+alias steam="DRI_PRIME=1 steam &"
+alias unityHub="DRI_PRIME=1 /home/linux/ProgramFile/UnityHub.AppImage &"
+alias synfigStudio="DRI_PRIME /home/linux/ProgramFile/synfigStudio.appimage &"
 
 alias kali="cd /home/linux/Documents/tutorial"
 alias app="cd /home/linux/Documents/program/app/"
 alias py="cd /home/linux/Documents/program/python/"
 alias cplasplas="cd /home/linux/Documents/program/cppProject/"
-alias demoprog="cd /home/linux/Documents/program/demo"
+alias demoprog="cd /home/linux/Documents/demo"
+
 
 
 alias screenoff="xset dpms force off"
+
 alias project="tmux new -s project -d ; 
                 tmux split-window -h -t project ; 
-                tmux split-window -v -t project ; 
+                tmux split-window -v -t project; 
                 tmux resize-pane -t 0 -x 130;
                 tmux attach -t project"
 
@@ -134,7 +137,7 @@ alias ls="colorls --group-directories-first --sort=extension"
 export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
 export PATH=$PATH:/home/linux/Documents/program/app/steam/dist
 export PATH=$PATH:/home/linux/Documents/program/app/imdb/dist/
-export PATH=$PATH:/home/linux/Documents/program/app/bin
+export PATH=$PATH:/home/linux/Documents/program/app/bin/
 #This is python library.
 export PYTHONPATH=$PYTHONPATH:/home/linux/Documents/program/python/scraping/lib
 
@@ -154,9 +157,6 @@ alias rm="rm -i"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
-
-
-
-
-
-
+# For FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPS="--extended"
