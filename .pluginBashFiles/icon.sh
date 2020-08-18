@@ -32,11 +32,11 @@ else
     elif (($percentage > 20))
     then
         battery="#[fg=colour11]"
-    elif (($percentage > 10))
+    elif (($percentage > 0))
     then
         battery="#[fg=colour1]"
     else
-        battery="#[fg=colour1]"
+        battery="#[fg=colour46]"
     fi
     time=`echo $batteryInfo | cut -d' ' -f2`
     echo -e "$time $battery $percentage% \c"
