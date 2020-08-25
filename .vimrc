@@ -5,12 +5,10 @@ syntax on
 set number
 
 "For insert mode.
-"let &t_SI = "\<esc>[5 q"
-"let &t_SR = "\<esc>[5 q"
-"let &t_EI = "\<esc>[2 q"
+let &t_SI = "\e[5 q"
+let &t_SR = "\<esc>[5 q"
+let &t_EI = "\e[2 q"
 
-
-"set nocompatible       "be iMproved, required
 set nowrap              "If line gose off the screen it will keep going.
 set noswapfile          "Create no .swp files.
 set tabstop=4           "tab space = 4 space.
@@ -28,49 +26,17 @@ call plug#begin('~/.vim/plugged')
         Plug 'scrooloose/nerdtree'
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
         Plug 'junegunn/fzf.vim'
-        Plug 'vim-airline/vim-airline'
-        Plug 'vim-airline/vim-airline-themes'
     "For syntex checker.
         Plug 'scrooloose/syntastic'
+        Plug 'octol/vim-cpp-enhanced-highlight'
     "For Theam.
-        Plug 'dracula/vim'
+        Plug 'morhetz/gruvbox'
+        Plug 'vim-airline/vim-airline'
     "For code complition.
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
+        Plug 'omnisharp/omnisharp-vim'
 call plug#end()
 
-"For cpp code highlighting :
-"---------------------------
-    "For Dracula Theam.
-    "syntax enable
-    colorscheme dracula
-    "colorscheme gruvbox
-
-"For nvim status line :
-"---------------------
-    let g:airline_powerline_fonts=1
-    let g:airline#extensions#tabline#enabled = 1
-
-"For Syntastic :
-"---------------
-    "It will only work if Syntastic and OmniSharp installed.
-    let g:syntastic_cs_checkers = ['code_checker']
-    "Ignore some of the messages in syntastic.
-    let g:syntastic_quiet_messages = { 'regex': 'Unnecessary using directive.' }
-
-	set statusline+=%#warningmsg#
-	"set statusline+=%{SyntasticStatuslineFlag()}
-	set statusline+=%*
-    let g:syntastic_quiet_messages={'level':'warnings'}
-	let g:syntastic_always_populate_loc_list = 1
-	let g:syntastic_auto_loc_list = 1
-	let g:syntastic_check_on_wq = 0
-	let g:syntastic_check_on_open = 0
-	let g:syntastic_python_checkers=['flake8']
-
-" For FZF :
-"----------
-    "let $FZF_DEFAULT_COMMAND = 'find . ! -name "*.meta" ! -name "*.cs"'
-    let $FZF_DEFAULT_COMMAND = 'find . ! -name "*.meta"'
 
 " For key map :
 "---------------
@@ -97,7 +63,24 @@ call plug#end()
 
     "For Visual Mode :
     "-----------------
+        "Copy to clipboard.
         vmap<C-c> "+y
+
+
+"For cpp code highlighting :
+"---------------------------
+    "colorscheme dracula
+    colorscheme gruvbox
+
+"For nvim status line :
+"---------------------
+    let g:airline_powerline_fonts=1
+    let g:airline#extensions#tabline#enabled = 1
+
+" For FZF :
+"----------
+    "let $FZF_DEFAULT_COMMAND = 'find . ! -name "*.meta" ! -name "*.cs"'
+    let $FZF_DEFAULT_COMMAND = 'find . ! -name "*.meta"'
 
 "For nerdtree
 "------------
@@ -107,6 +90,23 @@ call plug#end()
     let NERDTreeRespectWildIgnore=1
 
 
+"For Syntastic :
+"---------------
+    "It will only work if Syntastic and OmniSharp installed.
+    let g:syntastic_cs_checkers = ['code_checker']
+    "Ignore some of the messages in syntastic.
+    let g:syntastic_quiet_messages = { 'regex': 'Unnecessary using directive.' }
+
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+	set statusline+=%*
+    let g:syntastic_quiet_messages={'level':'warnings'}
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_wq = 0
+    let g:syntastic_check_on_open = 0
+	let g:syntastic_python_checkers=['flake8']
+
 "For C# omnisharp :
 "------------------
     " Use the stdio OmniSharp-roslyn server
@@ -114,7 +114,7 @@ call plug#end()
     let g:OmniSharp_server_use_mono = 1
 
     " Set the type lookup function to use the preview window instead of echoing it
-    "let g:OmniSharp_typeLookupInPreview = 1
+    let g:OmniSharp_typeLookupInPreview = 1
 
     " Timeout in seconds to wait for a response from the server
     let g:OmniSharp_timeout = 5
@@ -133,11 +133,8 @@ call plug#end()
     " You might also want to look at the echodoc plugin.
     set previewheight=5
 
-    " Tell ALE to use OmniSharp for linting C# files, and no other linters.
-    let g:ale_linters = { 'cs': ['OmniSharp'] }
-
     " Update semantic highlighting after all text changes
-    "let g:OmniSharp_highlight_types = 3
+    let g:OmniSharp_highlight_types = 3
     " Update semantic highlighting on BufEnter and InsertLeave
     "let g:OmniSharp_highlight_types = 2
 
