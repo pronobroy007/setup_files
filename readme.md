@@ -1,28 +1,45 @@
 # Requirement 
-    git
-    curl
-    nvim > 0.4.3
-    nodejs >= 10.12
     Nurd fonts.......
 
+# KeyBoard shortcut
+    Setting >> KeyBoard >> Views and Customize Shortcut >>
+
+# Install developer tools
+    sudo apt install curl neovim nodejs git build-essential g++ ruby ruby-dev npm pylint -y
+    pip3 install pylint jedi
 
 # For vim-plug
      curl -fLo ~/.vim/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim   
 
-# For Python language server
-    pip3 install pylint jedi 
+# Install coc.nvim plugin 
+    :CocInstall coc-omnisharp coc-clangd coc-phpls coc-python coc-pairs coc-snippets coc-sh
+
+# For Arduino language server
+    #install arduno-cli
+    curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
+    
+    #Add /home/kali/bin to #PATH for this open .zshrc and this
+    export PATH="$HOME/bin:$PATH"
+
+    "languageserver":
+    {
+      "arduino":
+      { 
+        "command":"/path/to/arduino-language-server",
+        "rootPatterns":["*.ino"],
+        "filetypes":["arduino"],
+        "args":["-cli", "/path/to/arduino-cli", "-clangd", "/path/to/clangd", "-cli-config", "/path/to/arduino-cli.yaml"]
+      }
+    }
 
 # For C/C++ language server
-    sudo apt install clangd-9
+    sudo apt-get install clangd-12
     //This will install clangd as /usr/bin/clangd-9. Make it the default clangd:
-    sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-9 100
+    sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-12 100
 
-# Install coc.nvim plugin 
-    :CocInstall coc-omnisharp coc-clangd coc-phpls coc-python coc-pairs coc-snippets
-
-# Configure Lnaguage server protocol 
-    * Open config.jf file with command :CocConfig
-    * and peast flowing text for languageserver to work.
+    # Configure Lnaguage server protocol 
+    //Open config.jf file with command :CocConfig
+    //and peast flowing text for languageserver to work.
 
     {
         "languageserver": 
@@ -38,20 +55,17 @@
 
 
 
-
 # Install FZF for Fuzzy finder for terminal
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
     ~/.fzf/install
 
-# Install developer tools
-    sudo apt install git build-essential g++ ruby ruby-dev npm -y
+# For make color and folder icon in terminal
+    https://www.addictivetips.com/ubuntu-linux-tips/make-linux-terminal-user-friendly-colorls/
+    sudo gem install colorls
 
 # Install powerline
     sudo apt install powerline
     
-# For make color and folder icon in terminal
-    https://www.addictivetips.com/ubuntu-linux-tips/make-linux-terminal-user-friendly-colorls/
-    sudo gem install colorls
 
 # Install zsh, oh-my-zsh, powerlevel10k
     sudo apt install zsh -y
@@ -99,7 +113,7 @@
 
     Install mono : 
     --------------
-        sudo apt install apt-transport-https dirmngr gnupg ca-certificates -y
+        sud apt install apt-transport-https dirmngr gnupg ca-certificates -y
         sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF 
         echo "deb https://download.mono-project.com/repo/debian stable-buster main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
         sudo apt update -y
