@@ -63,6 +63,8 @@ call plug#end()
             "<Leader>=\ ^M=<CR> ^[=<ESC>
             "Code Folding.
             nmap cf Vj%zf  
+            "zo = open folding and zc = close Folding
+           
             "Code Comment.
             vmap <Leader>c c{/**/<ESC>hi<CR><ESC>kpVi{koj>Vi{dva{p:wa<CR>
 
@@ -90,6 +92,10 @@ call plug#end()
             nnoremap tk :tablast<cr>
             "Ex : tm 0 	-->  this will move current tab in first position.
             nnoremap tm :tabm<space>
+
+        "For OmniSharp
+        "-------------
+            nnoremap fu :OmniSharpFindUsages<cr>
             
         "For nerdtree
         "-------------
@@ -206,6 +212,11 @@ For C# omnisharp :
     let g:OmniSharp_highlight_types = 3
     " Update semantic highlighting on BufEnter and InsertLeave
     "let g:OmniSharp_highlight_types = 2
+    
+    ":OmniSharpFindUsages results instead of the quickfix list
+    let g:OmniSharp_selector_findusages = 'fzf'
+    let g:OmniSharp_selector_ui = 'fzf'    " Use fzf
+
 
 
 
