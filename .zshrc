@@ -259,7 +259,6 @@ fi
 
 
 
-
 alias kdenlive="DRI_PRIME=1 kdenlive &"
 alias steam="DRI_PRIME=1 steam &"
 alias unityHub="DRI_PRIME=1 UnityHub.AppImage &"
@@ -276,6 +275,17 @@ alias demoprog="cd /home/kali/Documents/demo"
 
 export PATH="$HOME/bin:$PATH"
 export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
+export PATH=$PATH:/home/kali/Documents/program/app/bashScript
+export PATH=$PATH:/home/kali/Documents/program/app/bin
+
+#For C++
+#-------
+    #For c++ include files path here we put all *.h file for custom library
+    export CPATH=$CPATH:/home/kali/Documents/program/app/library/include
+    #For c++ library path here we put all custom *.a library files
+    #Inside Makefile we can write for our -l libraryname form our custom library
+    export LIBRARY_PATH=$LIBRARY_PATH:/home/kali/Documents/program/app/library/lib/
+#....................................................................................
 
 #For Change color for 777 directory(33 orange).
 LS_COLORS="$LS_COLORS:ow=33"
