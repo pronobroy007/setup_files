@@ -66,7 +66,9 @@ call plug#end()
             "zo = open folding and zc = close Folding
            
             "Code Comment.
-            vmap <Leader>c c{/**/<ESC>hi<CR><ESC>kpVi{koj>Vi{dva{p:wa<CR>
+            vmap <Leader>kc c{/**/<ESC>hi<CR><ESC>kpVi{koj>Vi{dva{p:wa<CR>
+            "Code UnComment.
+            vmap <Leader>ku :s/\/\*//e\|'<,'>s/\*\///g\|'<,'><\|nohlsearch<CR>
 
             "File Extension
             "echo expand("%:e") 
@@ -81,7 +83,7 @@ call plug#end()
                 let num = a:lastline-a:firstline+1
                 echo num
             endfunction
-            vmap <Leader>k :call Comment()<CR> 
+            "vmap <Leader>k :call Comment()<CR> 
 
         "For vim tab
         "------------
@@ -95,7 +97,7 @@ call plug#end()
 
         "For OmniSharp
         "-------------
-            nnoremap fu :OmniSharpFindUsages<cr>
+            nnoremap <Leader>fu :OmniSharpFindUsages<cr>
             
         "For nerdtree
         "-------------
@@ -104,7 +106,7 @@ call plug#end()
         "For FZF 
         "--------
             nmap <silent> <C-p> :Files<cr> 
-            nmap <silent> <C-b> :Buffers<cr> 
+            nmap <silent> <Leader><C-b> :Buffers<cr> 
 
         "For select all
         "--------------
@@ -114,23 +116,24 @@ call plug#end()
         "---------------
             "Split navigation.
             "nnoremap <C-h> <C-w>h
-            nmap <BS> <C-W>h
+            nmap <C-H> <C-W>h
             nnoremap <C-j> <C-w>j
             nnoremap <C-k> <C-w>k
             nnoremap <C-l> <C-w>l
 
             "Resize split
-            "noremap <silent> <C-Left> :vertical resize +3<cr>
-            "noremap <silent> <C-Right> :vertical resize -3<cr>
-            "noremap <silent> <C-w> :res +2<cr>
-            "noremap <silent> <C--> :res -2<cr>
+            noremap <silent> <C-Left> :vertical resize -2<cr>
+            noremap <silent> <C-Right> :vertical resize +2<cr>
+            noremap <silent> <C-UP> :res +2<cr>
+            noremap <silent> <C-Down> :res -2<cr>
 
             noremap Zz <c-w>_ \| <c-w>\|
             noremap Zo <c-w>=
 
             "For vim terminal <Esc> bact to normal mode.
-            "tnoremap <Esc> <C-\><C-n> 
-            "nnoremap Tt :60sp|:terminal
+            tnoremap <C-t> <C-\><C-n> 
+            nnoremap Tt :10sp\|:terminal<CR>
+            nnoremap TT :30vs\|:terminal<CR>
 
 
 "For cpp code highlighting :
@@ -182,7 +185,7 @@ call plug#end()
     let g:syntastic_quiet_messages = { 'regex': 'Unnecessary using directive.' }
 
 
-For C# omnisharp :
+"For C# omnisharp :
 "------------------
     " Use the stdio OmniSharp-roslyn server
     "let g:OmniSharp_server_stdio = 1
@@ -209,9 +212,9 @@ For C# omnisharp :
     set previewheight=5
 
     " Update semantic highlighting after all text changes
-    let g:OmniSharp_highlight_types = 3
+    let g:OmniSharp_highlight_types = 0
     " Update semantic highlighting on BufEnter and InsertLeave
-    "let g:OmniSharp_highlight_types = 2
+    "let g:OmniSharp_highlight_types = 3
     
     ":OmniSharpFindUsages results instead of the quickfix list
     let g:OmniSharp_selector_findusages = 'fzf'
